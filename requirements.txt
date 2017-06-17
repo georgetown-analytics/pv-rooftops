@@ -1,0 +1,5 @@
+beautifulsoup4==4.6.0
+bs4==0.0.1
+Django==1.11.2
+psycopg2==2.7.1
+pytz==2017.2
