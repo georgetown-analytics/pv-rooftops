@@ -54,7 +54,7 @@ ROOT_URLCONF = 'django_pv.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['pv/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
