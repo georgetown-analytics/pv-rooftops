@@ -1,0 +1,5 @@
+Django==1.11.2
+psycopg2==2.7.1
+pytz==2017.2
+wheel==0.29.0
+gunicorn==19.7.1

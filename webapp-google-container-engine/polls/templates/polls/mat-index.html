@@ -1,0 +1,829 @@
+
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+ <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Georgetown Data Science Spring 2017, Capstone: Research Project Utilizing Machine Learning to Predict Future Solar PV Roof Installs for the United States">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Capstone: Solar PV Rooftops</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-amber.min.css">
+
+    <!-- this is the reference to the old style sheet before the static folder was created
+    <link rel="stylesheet" href="https://rawgit.com/JF1297/pv-rooftops/master/css/styles.css">
+    -->
+
+    <!-- code for generating static url -- see django tutorial 6 -->
+    <!-- got it to work!  lesson learned: order of css links matter -->
+    <!-- the below template tag generates the absolute URL for the style.css file -->
+    <!-- for more info, see the middle of part 6 for the Django tutorial -->
+     {% load static %}
+
+     <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>Capstone Solar</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a href="#overview" class="mdl-layout__tab is-active">Overview</a>
+          <a href="#features" class="mdl-layout__tab">Details</a>
+          <a href="#explore" class="mdl-layout__tab">Try it Out</a>
+          <a href="#datateam" class="mdl-layout__tab">About Team</a>
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+            <i class="material-icons" role="presentation">add</i>
+            <span class="visuallyhidden">Add</span>
+          </button>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+              <i class="material-icons">play_circle_filled</i>
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Overview of the Solar Capstone Project</h4>
+                Predicting PV Rooftop Solar Installations
+              </div>
+              <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Read our abstract</a>
+              </div>
+            </div>
+
+
+
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+          </section>
+
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4 class="mdl-cell mdl-cell--12-col">Goals and Background</h4>
+
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--primary"></div>
+                </div>
+
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>The Solar Domain</h5>
+                  Photovoltaic solar cell technology is a rapidly advancing source of renewable, inexhaustible, and clean energy for utilities, businesses, and households. Among alternative energy technologies, the rooftop photovoltaic (PV) system is one of most popular and increasingly attractive technologies available for residential use. Over the past decade, driven by the rapid development of revolutionary PV technologies and drops in overall installation price, rooftop PV installations have experienced exponential growth in the US and around the world. The market is projected to continue its rapid growth, driven by continued improvements in PV cell efficiency, installation cost improvements, and society’s concerns about the detrimental impact of carbon release associated with traditional energy generation.
+                  <a href="#">More Info</a>.
+                </div>
+
+
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <br>
+                  <div class="section__circle-container__circle mdl-color--primary"></div>
+                </div>
+
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <br>
+                  <h5>Motivation</h5>
+                  Our team aims to construct a model to predict the market size for residential PV rooftop technology in a select group of metro areas based on user-provided variables, such as installation costs, as well as general market conditions within each metro area, and thereby provide strategic forecasting to assist PV rooftop system manufacturers, installers, policy-makers, and utility companies.
+                  <a href="#">More info</a>.
+                </div>
+
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <br>
+                  <div class="section__circle-container__circle mdl-color--primary"></div>
+                </div>
+
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <br>
+                  <h5> Initial Hypothesis </h5>
+                  In our initial hypothesis, we suggest the volume of rooftop PV solar installations within each metro area is affected by several key market factors, including housing type populations in each metro area (numbers of single families, townhouses, commercial, etc), household income, party registration, local electricity rates, education level, the availability and reviews of local installation contractors, installation price, etc.
+                  <a href="#">More info</a>.
+                </div>
+
+              </div>
+
+              <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Read the specifics</a>
+              </div>
+
+            </div>
+
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
+              <i class="material-icons">more_vert</i>
+            </button>
+
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+
+
+          </section>
+
+
+
+
+          <!-- factoid to break-up middle of page -->
+          <section class="section--footer mdl-color--white mdl-grid">
+              <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
+              </div>
+              <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <h5>Did you know?</h5>
+                Solar Roof Fact #1: Esse non aute ullamco Lorem
+                </div>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
+                </div>
+              <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <h5>In the News</h5>
+                  Meet Tom, Nevada's Top Installer: (html link)
+              </div>
+          </section>
+
+
+
+
+
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Questions this Project Answers</h4>
+                What available data best predicts the adoption of rooftop PV over time? Based on those factors, their trend-line developments, and relevant inputs by a potential contractor looking to perform PV installations, what is the potential size of the PV rooftop market within a given market for the next 6-12 months?
+              </div>
+
+              <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Read how we did it</a>
+              </div>
+            </div>
+
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn3">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+          </section>
+
+
+
+
+
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__supporting-text">
+              <h4>Explore the Data</h4>
+                  <!-- with first tutorial, accessing a SQLite database -->
+                  <!-- second version, accessing a gcp postgres database -->
+                  <!-- third version, succesfully accessing amazon rds database -->
+                  This data is being pulled from a Google Cloud SQL database
+
+              {% if latest_question_list %}
+                  <ul>
+                  {% for question in latest_question_list %}
+                      <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+                  {% endfor %}
+                  </ul>
+              {% else %}
+                  <p>No polls are available.</p>
+              {% endif %}
+
+            </div>
+
+            <div class="mdl-card__actions">
+              <a href="#" class="mdl-button">Select a Search Filter</a>
+              <!-- ********make sure to escape all user input to protect against attacks on database*************-->
+              <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>-->
+            </div>
+          </div>
+
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn4">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn4">
+            <li class="mdl-menu__item" disabled>Share</li>
+            <li class="mdl-menu__item" disabled>Options</li>
+            <li class="mdl-menu__item" disabled>Comment</li>
+          </ul>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__supporting-text">
+
+
+
+                  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">County</th>
+                    <th class="mdl-data-table__cell--non-numeric">State</th>
+                    <th>Year</th>
+                    <th>Quarter</th>
+                    <th class="mdl-data-table__cell--non-numeric">Count</th>
+                    <th>Price per Watt</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+
+                  {% if rdsdb %}
+
+                      {% for question in rdsdb %}
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">{{ question.county }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ question.state }}</td>
+                            <td>{{ question.year }}</td>
+                            <td>{{ question.quarter }}</td>
+                            <td>{{ question.count }}</td>
+                            <td>{{ question.price_per_watt }}</td>
+                          </tr>
+
+                      {% endfor %}
+                  {% else %}
+                      <p>No rds-postgres data available.</p>
+                  {% endif %}
+
+                  </tbody>
+                  </table>
+
+                  <!--
+                  geoid = models.IntegerField(blank=True, primary_key=True)
+
+
+                      households = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+                      hhincome_above_200k = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+                      average_rtl_price = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+                      price_per_watt = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+                      year_since_1990 = models.FloatField(blank=True, null=True)
+                      grid_to_panel_cost_ratio = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+                      net_metering = models.CharField(max_length=42000, blank=True, null=True)
+                      net_metering_grade = models.CharField(max_length=42, blank=True, null=True)
+                    -->
+
+
+                </div>
+
+                <div class="mdl-card__actions">
+                  <a href="#" class="mdl-button">Select a Search Filter</a>
+                  <!-- ********make sure to escape all user input to protect against attacks on database*************-->
+                  <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>-->
+                </div>
+
+            </div>
+
+
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn5">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn5">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+
+
+
+        </section>
+
+
+
+
+
+
+
+        <!-- infographic before footer-->
+          <section class="section--footer mdl-color--white mdl-grid">
+            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+              <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
+            </div>
+            <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+              <br><h5>Changing Times</h5>
+              Solar Roof Fact #2: Minim eiusmod laboris enim
+            </div>
+          </section>
+
+
+
+        </div>
+
+
+
+        <!-- Separate Tab for more info-->
+
+        <div class="mdl-layout__tab-panel" id="features">
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>All the Details</h4>
+
+              <ul>
+                <li>Find out how we setup each part of our data science pipeline</li>
+                <li>We'll also detail different problems encountered along the way, and how we solved them</li>
+
+              </ul>
+
+              <ul class="toc">
+                <h4>Table of Contents</h4>
+                <a href="#lorem1">Data Architecture</a>
+                <a href="#lorem2">Data Sources Used</a>
+                <a href="#lorem3">Ingestion</a>
+                <a href="#lorem4">Wrangling</a>
+                <a href="#lorem5">Initial Human Inspection of Data</a>
+                <a href="#lorem6">Visualizing the Data</a>
+                <a href="#lorem7">Sanity Checks</a>
+                <a href="#lorem8">Chlropeth Maps</a>
+                <a href="#lorem9">Machine Learning</a>
+                <a href="#lorem10">Creating a Webapp</a>
+                <a href="#lorem11">Conclusions</a>
+                <a href="#lorem12">Future Work</a>
+              </ul>
+
+
+              <h5 id="lorem1">Data Architecture</h5>
+              Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
+              <ul>
+                <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
+                <li>Dolor consectetur incididunt in ipsum laborum non et irure pariatur excepteur anim occaecat officia sint.</li>
+                <li>Lorem labore proident officia excepteur do.</li>
+              </ul>
+
+              <p>
+                Sit qui est voluptate proident minim cillum in aliquip cupidatat labore pariatur id tempor id. Proident occaecat occaecat sint mollit tempor duis dolor cillum anim. Dolore sunt ea mollit fugiat in aliqua consequat nostrud aliqua ut irure in dolore. Proident aliqua culpa sint sint exercitation. Non proident occaecat reprehenderit veniam et proident dolor id culpa ea tempor do dolor. Nulla adipisicing qui fugiat id dolor. Nostrud magna voluptate irure veniam veniam labore ipsum deserunt adipisicing laboris amet eu irure. Sunt dolore nisi velit sit id. Nostrud voluptate labore proident cupidatat enim amet Lorem officia magna excepteur occaecat eu qui. Exercitation culpa deserunt non et tempor et non.
+              </p>
+              <p>
+                Do dolor eiusmod eu mollit dolore nostrud deserunt cillum irure esse sint irure fugiat exercitation. Magna sit voluptate id in tempor elit veniam enim cupidatat ea labore elit. Aliqua pariatur eu nulla labore magna dolore mollit occaecat sint commodo culpa. Eu non minim duis pariatur Lorem quis exercitation. Sunt qui ex incididunt sit anim incididunt sit elit ad officia id.
+              </p>
+
+
+              <h5 id="lorem2">Data Sources Used</h5>
+
+              <p id="lorem3">
+                Eiusmod nulla aliquip ipsum reprehenderit nostrud non excepteur mollit amet esse est est dolor. Dolore quis pariatur sit consectetur veniam esse ullamco duis Lorem qui enim ut veniam. Officia deserunt minim duis laborum dolor in velit pariatur commodo ullamco eu. Aute adipisicing ad duis labore laboris do mollit dolor cillum sunt aliqua ullamco. Esse tempor quis cillum consequat reprehenderit. Adipisicing proident anim eu sint elit aliqua anim dolore cupidatat fugiat aliquip qui.
+              </p>
+
+              <h5 id="lorem4">Ingestion</h5>
+              <p id="lorem4">
+                Nisi eiusmod esse cupidatat excepteur exercitation ipsum reprehenderit nostrud deserunt aliqua ullamco. Anim est irure commodo eiusmod pariatur officia. Est dolor ipsum excepteur magna aliqua ad veniam irure qui occaecat eiusmod aute fugiat commodo. Quis mollit incididunt amet sit minim velit eu fugiat voluptate excepteur. Sit minim id pariatur ex cupidatat cupidatat nostrud nostrud ipsum.
+              </p>
+
+
+              <h5 id="lorem5">Wrangling</h5>
+              <p>
+                Enim ea officia excepteur ad veniam id reprehenderit eiusmod esse mollit consequat. Esse non aute ullamco Lorem aliqua qui dolore irure eiusmod aute aliqua proident labore aliqua. Ipsum voluptate voluptate exercitation laborum deserunt nulla elit aliquip et minim ex veniam. Duis cupidatat aute sunt officia mollit dolor ad elit ad aute labore nostrud duis pariatur. In est sint voluptate consectetur velit ea non labore. Ut duis ea aliqua consequat nulla laboris fugiat aute id culpa proident. Minim eiusmod laboris enim Lorem nisi excepteur mollit voluptate enim labore reprehenderit officia mollit.
+              </p>
+
+
+              <h5 id="lorem6">Initial Human Inspection of Data</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+              <h5 id="lorem7">Sanity Checks</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+
+              <h5 id="lorem8">Visualizing the Data</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+
+              <h5 id="lorem9">Chlropeth Maps</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+
+              <h5 id="lorem9">Machine Learning</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+              <h5 id="lorem11">Creating a Webapp</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+
+              <h5 id="lorem11">Conclusions</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+              <h5 id="lorem12">Future Work</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+            </div>
+          </section>
+        </div>
+
+
+        <!-- Separate Tab for more info-->
+        <div class="mdl-layout__tab-panel" id="explore">
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+              <i class="material-icons">play_circle_filled</i>
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Interact with Our ML Model</h4>
+                Watch a quick video showing off our results or scroll down and dive right into the model
+              </div>
+              <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">watch now</a>
+              </div>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn6">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn6">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+          </section>
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4>Predicted SolarPV Rooftop Installs for A Given Year</h4>
+                 <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
+                 <img src="{% static 'polls/testanimatedchoro.gif' %}"  alt="Animated-Choropleth"/>
+
+
+                  <!--fix this formatting
+                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                   <span class="mdl-switch__label">Animated GIF off/on</span>
+                   <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+                   </label>
+                 -->
+
+              </div>
+
+              <div class="mdl-card__actions">
+
+                <a href="#" class="mdl-button">Change Date &amp; Re-run Model</a>
+                <a href="#" class="mdl-button">Switch to Static Image</a>
+
+              </div>
+
+            </div>
+
+
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn7">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn7">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+          </section>
+
+
+
+
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4>Feature Set</h4>
+                 <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
+
+
+
+                 <script type='text/javascript' src='https://us-east-1.online.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 1281px; height: 619px;'><object class='tableauViz' width='1281' height='619' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='site_root' value='&#47;t&#47;georgetowndatascienceprojects' /><param name='name' value='Book1-feature-map&#47;Feature-map' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='showShareOptions' value='true' /></object></div>
+
+
+                  <!--fix this formatting
+                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                   <span class="mdl-switch__label">Animated GIF off/on</span>
+                   <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+                   </label>
+                 -->
+
+              </div>
+
+              <div class="mdl-card__actions">
+
+                <a href="#" class="mdl-button">Switch Views</a>
+                <a href="#" class="mdl-button">Options</a>
+
+              </div>
+
+            </div>
+
+
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn7">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn7">
+              <li class="mdl-menu__item" disabled>Share</li>
+              <li class="mdl-menu__item" disabled>Options</li>
+              <li class="mdl-menu__item" disabled>Comment</li>
+            </ul>
+          </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+
+
+              <h5 id="lorem12">Notes</h5>
+              <p>
+                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+              </p>
+
+            </div>
+          </section>
+        </div>
+
+
+
+
+
+
+
+        <div class="mdl-layout__tab-panel" id="datateam">
+
+              <div class="mdl-grid portfolio-max-width">
+                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                     <div class="mdl-card__media">
+                         <img class="article-image" src="{% static 'polls/gt.png' %}" border="0" alt="">
+                     </div>
+                     <div class="mdl-card__title">
+                         <h2 class="mdl-card__title-text">Georgetown Data</h2>
+                     </div>
+                     <div class="mdl-card__supporting-text">
+                         About the program Georgetown Data Science Certificate Program
+                     </div>
+                     <div class="mdl-card__actions mdl-card--border">
+                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                     </div>
+                 </div>
+               </div>
+
+
+               <div class="mdl-grid portfolio-max-width">
+                  <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                      <div class="mdl-card__media">
+                          <img class="article-image" src="{% static 'polls/example-blog02.jpg' %}" border="0" alt="">
+                      </div>
+                      <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">Henry</h2>
+                      </div>
+                      <div class="mdl-card__supporting-text">
+                          Awesome!
+                      </div>
+                      <div class="mdl-card__actions mdl-card--border">
+                          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="mdl-grid portfolio-max-width">
+                   <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+
+
+                       <div class="mdl-card__media">
+                           <img class="article-image" src="{% static 'polls/example-blog02.jpg' %}" border="0" alt="">
+                       </div>
+                       <div class="mdl-card__title">
+                           <h2 class="mdl-card__title-text">Jameelah</h2>
+                       </div>
+                       <div class="mdl-card__supporting-text">
+                           Spectacular!
+                       </div>
+                       <div class="mdl-card__actions mdl-card--border">
+                           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mdl-grid portfolio-max-width">
+                    <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="{% static 'polls/example-blog02.jpg' %}" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Grace</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Brilliant!
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        </div>
+                    </div>
+                  </div>
+
+
+                  <div class="mdl-grid portfolio-max-width">
+                     <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                         <div class="mdl-card__media">
+                             <img class="article-image" src="{% static 'polls/example-blog02.jpg' %}" border="0" alt="">
+                         </div>
+                         <div class="mdl-card__title">
+                             <h2 class="mdl-card__title-text">James</h2>
+                         </div>
+                         <div class="mdl-card__supporting-text">
+                             Hi!
+                         </div>
+                         <div class="mdl-card__actions mdl-card--border">
+                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                         </div>
+                     </div>
+                   </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Overview</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">PV Rooftop Intro Video</a></li>
+                <li><a href="#">Background</a></li>
+                <li><a href="#">Project Goals</a></li>
+                <li><a href="#">Explore the Wrangled Data</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">All the Details</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">Data Architecture</a></li>
+                <li><a href="#">Ingestion</a></li>
+                <li><a href="#">Wrangling</a></li>
+                <li><a href="#">Statistical Analysis</a></li>
+                <li><a href="#">Machine Learning</a></li>
+                <li><a href="#">Visualization</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Try It Out</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">ML Intro Video</a></li>
+                <li><a href="#">Interactive Choropleth Map</a></li>
+                <li><a href="#">Interactive Visual #2</a></li>
+                <li><a href="#">Interactive Visual #3</a></li>
+                <li><a href="#">Interactive Visual #4</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">About Us</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">Team Bio</a></li>
+                <li><a href="#">Send Us Your Data Problem</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mdl-mega-footer--bottom-section">
+            <div class="mdl-logo">
+              Georgetown Data Science (v1.9)
+            </div>
+            <ul class="mdl-mega-footer--link-list">
+              <li><a href="#">Privacy and Legal</a></li>
+              <li><a href="#">Send Feedback</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <!-- maybe use this when complete
+    <a href="#" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Hire Us</a>
+    -->
+
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
+</html>
