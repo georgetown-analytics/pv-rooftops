@@ -1,0 +1,258 @@
+
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+ <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Georgetown Data Science Spring 2017, Capstone: Research Project Utilizing Machine Learning to Predict Future Solar PV Roof Installs for the United States">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Capstone: Solar PV Rooftops</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-amber.min.css">
+
+    <!-- this is the reference to the old style sheet before the static folder was created
+    <link rel="stylesheet" href="https://rawgit.com/JF1297/pv-rooftops/master/css/styles.css">
+    -->
+
+    <!-- code for generating static url -- see django tutorial 6 -->
+    <!-- got it to work!  lesson learned: order of css links matter -->
+    <!-- the below template tag generates the absolute URL for the style.css file -->
+    <!-- for more info, see the middle of part 6 for the Django tutorial -->
+     {% load static %}
+
+     <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>Capstone Solar</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a href="#overview" class="mdl-layout__tab is-active">Overview</a>
+          <a href="#features" class="mdl-layout__tab">Details</a>
+          <a href="#explore" class="mdl-layout__tab">Try it Out</a>
+  
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+            <i class="material-icons" role="presentation">add</i>
+            <span class="visuallyhidden">Add</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="mdl-layout__content">
+
+
+
+
+
+
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+              <i class="material-icons">play_circle_filled</i>
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Overview of the Solar Capstone Project</h4>
+                Predicting PV Rooftop Solar Installations
+              </div>
+              <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Dive into the Details</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--primary"></div>
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Objective</h5>
+                  Using machine learning to predict the future number of solar rooftop installs in the USA
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <br>
+                  <h5> Initial Hypothesis </h5>
+                  The volume of rooftop PV solar installations within each county is affected by several key market factors, including:
+                   <ul>
+                     <li> Housing type populations in each county (numbers of single families, townhouses, commercial) </li>
+                     <li> Party registration </li>
+                     <li> Local electricity rates </li>
+                     <li> Education levels </li>
+                     <li> Availability and reviews of local installation contractors </li>
+                     <li> Installation price </li>
+                   </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Which features would you choose?</h4>
+
+                          <div class='tableauPlaceholder' id='viz1498610447566' style='position: relative'><noscript><a href='#'><img alt='Feature-map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='PVRooftop-Feature-Map-workbook&#47;Feature-map' /><param name='show_viz_home' value='no' /><param name='tabs' value='no' /><param name="toolbar" value="no" /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='no' /><param name='display_share' value='no'/><param name='showShareOptions' value='false' /><param name='customViews' value='no'/> <param name='display_count' value='yes' /></object></div>    <script type='text/javascript'> var divElement = document.getElementById('viz1498610447566'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; var scriptElement = document.createElement('script');    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); </script>
+
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+
+        <div class="mdl-layout__tab-panel" id="explore">
+
+
+          <!--
+<div class="mdl-layout__tab-panel" id="explore">
+
+class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base"
+
+          -->
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+              <i class="material-icons">play_circle_filled</i>
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Overview of the Solar Capstone Project</h4>
+                Predicting PV Rooftop Solar Installations
+              </div>
+              <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Dive into the Details</a>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+
+
+
+
+
+
+
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Overview</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">PV Rooftop Intro Video</a></li>
+                <li><a href="#">Background</a></li>
+                <li><a href="#">Project Goals</a></li>
+                <li><a href="#">Explore the Wrangled Data</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">All the Details</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">Data Architecture</a></li>
+                <li><a href="#">Ingestion</a></li>
+                <li><a href="#">Wrangling</a></li>
+                <li><a href="#">Statistical Analysis</a></li>
+                <li><a href="#">Machine Learning</a></li>
+                <li><a href="#">Visualization</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Try It Out</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">ML Intro Video</a></li>
+                <li><a href="#">Interactive Choropleth Map</a></li>
+                <li><a href="#">Interactive Visual #2</a></li>
+                <li><a href="#">Interactive Visual #3</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">About Us</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#">Team Bio</a></li>
+                <li><a href="https://goo.gl/forms/GzE5Z61BwjdULfjz2">Send Us Your Data Problem</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mdl-mega-footer--bottom-section">
+            <div class="mdl-logo">
+              Georgetown Data Science (v2.1)
+            </div>
+            <ul class="mdl-mega-footer--link-list">
+              <li><a href="https://goo.gl/forms/DNMMV2XSzJfOHMPT2">Send Feedback</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <!-- maybe use this when complete
+    <a href="#" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Hire Us</a>
+    -->
+
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
+</html>

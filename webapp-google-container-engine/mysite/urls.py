@@ -23,6 +23,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urladminvar = os.getenv('ADMIN_URL')
 
 urlpatterns = [
+    url(r'^pv/', include('pv.urls')),
     url(r'^', include('polls.urls')),
     url(r'^polls/', include('polls.urls')), #this line added from django tutorial
     url(r'^' + urladminvar + '/', admin.site.urls)
