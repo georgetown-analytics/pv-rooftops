@@ -1,5 +1,7 @@
-To create a map, type the following in the terminal:
 
-$ python color_map.py > YourNametheFile.svg
+Steps to create a choropleth map:
 
-Then, open the SVG file in Safari to review the map. 
+1) Naviagte to map directory `choropleth_maps` and execute the command `$ python color_map.py > YourNametheFile.svg`
+You will see a new svg file in the same directory.
+
+2) Open the svg file in web brower and you will see the choropleth map. 
