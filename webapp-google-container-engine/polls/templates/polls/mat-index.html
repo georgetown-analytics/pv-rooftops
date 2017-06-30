@@ -82,7 +82,7 @@
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
 		  <h3>Photovoltaic Rooftop Installations: A Predictive Study of Market Demand</h3>
           <h3>Modeling the Econonomic Demand for Residential Photovoltaic Installations </h3>
-		 
+
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
@@ -155,7 +155,7 @@
                 </div>
 
               </div>
-			  
+
             </div>
 
           </section>
@@ -194,7 +194,7 @@
               </div>
             </div>
 
- 
+
           </section>
 
 
@@ -374,7 +374,7 @@
 
               <ul class="toc">
                 <h4>Table of Contents</h4>
-				<a href="#why">Why?</a>              
+				<a href="#why">Why?</a>
                 <a href="#data-sources">Data Collection & Sources</a>
 			    <a href="#data-arch">Data Architecture</a>
                 <a href="#ingestion">Ingestion</a>
@@ -394,14 +394,14 @@
 			   <li>The installation cost per watt for residential PV rooftop systems is quickly approaching grid parity, the economic breakeven point, beyond which consumers can capture a positive ROI from installing a PV rooftop system. Model results suggest that there is a grid-to-installation price tipping point beyond which exponential growth can be anticipated.</li>
 			   <li> Businesses armed with good predictive models are posed to capture profits early from burgeoning demand in ripening markets and enjoy the benefits of a first-mover advantage while minimizing the risk of entering too early.</li>
 			   </ul>
-              
+
               <h5 id="data-sources">Data Collection & Sources</h5>
               <h6>Data Collection</h6>
               <ul>
                 <li>The team drafted a statistical abstract based on the economic theory of demand as the basis for its data collection strategy.</li>
                 <li>According to economic theory, key determinants of demand are:
                     <ul>
-					    <li>Product price</li> 
+					    <li>Product price</li>
 						<li>Availability / price of complementary goods </li>
 						<li>Price of substitute goods </li>
 						<li>Income / income distribution </li>
@@ -428,12 +428,12 @@
 
 
               <h5 id="data-arch">Data Architecture</h5>
-    
+
               <p>
                The data pipeline consists of ...WORM Storage and Data Wrangling: Amazon Web Services-hosted PostGreSQL database for housing WORM storage and performing SQL operations to wrangle the data into the necessary formats.
 
               </p>
-			  <img src ="images/Capstone Solar Architecture.jpg" align="middle"></img>
+			  <img src ="{% static 'polls/Capstone-Solar-Architecture.jpg' %}" align="middle"></img>
 
               <h5 id="ingestion">Ingestion</h5>
               <p id="lorem4">
@@ -453,7 +453,7 @@
                 <li>The team performed multiple SQL queries to produce joinable table views at the appropriate level of detail and then in stepwise fashion joined the instances and features into a consolidated table view for machine learning.</li>
 
               </ul>
-  
+
 
               <h5 id="analysis">Data Exploration and Analysis</h5>
               <p>
@@ -468,7 +468,7 @@
 				<li>With feature transformations such as dividing the retail price of electricity by the price per installed watt, taking the exponent of that result, and multiplying it by the relevant housing stock, the team was able to improve the R-squared of the linear regressions from <0.3 to 0.6 – 0.73.</li>
 				<li>While the transformed dataset did not materially impact the non-linear results, it gave the team more confidence in their soundness.</li>
               </ul>
-			  <img src="images/randomforest.png"></img>
+			  <img src="{% static 'polls/randomforest.jpg' %}"></img>
 
              <h5 id="lorem8">Visualizing the Data</h5>
               <p>
@@ -676,7 +676,7 @@ price will be used for 2016 or later
                          <h2 class="mdl-card__title-text">Georgetown University School of Continuing Studies: Data Science</h2>
                      </div>
                      <div class="mdl-card__supporting-text">
-					   <img src="images/georgetown.jpg"></img> <br />
+					   <img src="{% static 'polls/georgetown.jpg' %}"></img> <br />
                           <br />
                          This is capstone project conducted by a team belonging to the 8th cohort of Georgetown University's Data Science Professional Certificate Program
                      </div>
@@ -696,7 +696,7 @@ price will be used for 2016 or later
                           <h2 class="mdl-card__title-text">Henry</h2>
                       </div>
                       <div class="mdl-card__supporting-text">
-					      <img src="images/henry.jpg"></img> <br />
+					      <img src="{% static 'polls/henry.jpg' %}"></img> <br />
                           <br />
 						  A seasoned cost accounting / finance / data analytics professional with deep, 10+ years experience in manufacturing accounting, budgeting, forecasting, financial modeling, and operational analysis.
                           <br /><br />
@@ -719,9 +719,9 @@ price will be used for 2016 or later
                            <h2 class="mdl-card__title-text">Jameelah</h2>
                        </div>
                        <div class="mdl-card__supporting-text">
-					   <img src="images/jameelah.jpg"></img> <br />
+					   <img src="{% static 'polls/jameelah.jpg' %}"></img> <br />
                           <br />
-                           A Data Engineer with an interest in application architecture, especially as it pertains to big data analytics. Her experiences span from computing infrastructure, technical operations, and data computation to independent research centered around psychoacoustics. 
+                           A Data Engineer with an interest in application architecture, especially as it pertains to big data analytics. Her experiences span from computing infrastructure, technical operations, and data computation to independent research centered around psychoacoustics.
 						   <br /><br />
 						   She profoundly believes that a more knowledgeable society is a better functioning society, which is largely what drives her passions for research, innovation and community service.
                        </div>
@@ -740,7 +740,7 @@ price will be used for 2016 or later
                             <h2 class="mdl-card__title-text">Grace</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-						     <img src="images/grace.jpg"></img> <br />
+						     <img src="{% static 'polls/grace.jpg' %}"></img> <br />
                           <br />
                             An achieved Environmental Engineer and Geoscientist with experience in research efforts at universities all over the globe. Her projects cover topics spanning flouride contamination and organic pollution, to aquatic geochemistry. She possesses keen analytical and scientific abilities that make her an asset to any team she is a part of.
                         </div>
@@ -760,7 +760,7 @@ price will be used for 2016 or later
                              <h2 class="mdl-card__title-text">James</h2>
                          </div>
                          <div class="mdl-card__supporting-text">
-						     <img src="images/james.jpg"></img> <br />
+						     <img src="{% static 'polls/james.jpg' %}"></img> <br />
                           <br />
                             A passionate technologist with a charisma that makes the team. He has an acedemic background in Electrical Engineering and currently works as a Patent Examiner for the United States Patent and Trade Office. If anybody has got the scoop on the nation's latest technological trends and innovations, it's this guy!
                          </div>
@@ -820,7 +820,7 @@ price will be used for 2016 or later
               Thanks!
 
             </div>
-           
+
           </div>
         </footer>
       </main>
@@ -828,7 +828,7 @@ price will be used for 2016 or later
 
     <!-- maybe use this when complete
     <a href="#" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Hire Us</a> -->
-    
+
 
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </body>
