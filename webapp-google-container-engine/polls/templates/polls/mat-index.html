@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Georgetown Data Science Spring 2017, Capstone: Research Project Utilizing Machine Learning to Predict Future Solar PV Roof Installs for the United States">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Capstone: Solar PV Rooftops</title>
+    <title>Capstone: PV Rooftop Installations</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -80,7 +80,9 @@
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-          <h3>Capstone Solar</h3>
+		  <h3>Photovoltaic Rooftop Installations: A Predictive Study of Market Demand</h3>
+          <h3>Modeling the Econonomic Demand for Residential Photovoltaic Installations </h3>
+		 
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
@@ -98,29 +100,19 @@
       <main class="mdl-layout__content">
         <div class="mdl-layout__tab-panel is-active" id="overview">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <i class="material-icons">play_circle_filled</i>
-            </header>
+
             <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text">
                 <h4>Overview of the Solar Capstone Project</h4>
                 Predicting PV Rooftop Solar Installations
               </div>
               <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Read our abstract</a>
+                <a href="#" class="mdl-button">Read our paper</a>
               </div>
             </div>
 
 
 
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-              <li class="mdl-menu__item" disabled>Share</li>
-              <li class="mdl-menu__item" disabled>Options</li>
-              <li class="mdl-menu__item" disabled>Comment</li>
-            </ul>
           </section>
 
 
@@ -137,7 +129,6 @@
                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>The Solar Domain</h5>
                   Photovoltaic solar cell technology is a rapidly advancing source of renewable, inexhaustible, and clean energy for utilities, businesses, and households. Among alternative energy technologies, the rooftop photovoltaic (PV) system is one of most popular and increasingly attractive technologies available for residential use. Over the past decade, driven by the rapid development of revolutionary PV technologies and drops in overall installation price, rooftop PV installations have experienced exponential growth in the US and around the world. The market is projected to continue its rapid growth, driven by continued improvements in PV cell efficiency, installation cost improvements, and society’s concerns about the detrimental impact of carbon release associated with traditional energy generation.
-                  <a href="#">More Info</a>.
                 </div>
 
 
@@ -150,7 +141,6 @@
                   <br>
                   <h5>Motivation</h5>
                   Our team aims to construct a model to predict the market size for residential PV rooftop technology in a select group of metro areas based on user-provided variables, such as installation costs, as well as general market conditions within each metro area, and thereby provide strategic forecasting to assist PV rooftop system manufacturers, installers, policy-makers, and utility companies.
-                  <a href="#">More info</a>.
                 </div>
 
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
@@ -162,30 +152,13 @@
                   <br>
                   <h5> Initial Hypothesis </h5>
                   In our initial hypothesis, we suggest the volume of rooftop PV solar installations within each metro area is affected by several key market factors, including housing type populations in each metro area (numbers of single families, townhouses, commercial, etc), household income, party registration, local electricity rates, education level, the availability and reviews of local installation contractors, installation price, etc.
-                  <a href="#">More info</a>.
                 </div>
 
               </div>
-
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Read the specifics</a>
-              </div>
-
+			  
             </div>
 
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
-              <i class="material-icons">more_vert</i>
-            </button>
-
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2">
-              <li class="mdl-menu__item" disabled>Share</li>
-              <li class="mdl-menu__item" disabled>Options</li>
-              <li class="mdl-menu__item" disabled>Comment</li>
-            </ul>
-
-
           </section>
-
 
 
 
@@ -209,10 +182,6 @@
 
 
 
-
-
-
-
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text">
@@ -225,19 +194,12 @@
               </div>
             </div>
 
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn3">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
-              <li class="mdl-menu__item" disabled>Share</li>
-              <li class="mdl-menu__item" disabled>Options</li>
-              <li class="mdl-menu__item" disabled>Comment</li>
-            </ul>
+ 
           </section>
 
 
 
-
+<!--
 
         <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
           <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -246,7 +208,7 @@
                   <!-- with first tutorial, accessing a SQLite database -->
                   <!-- second version, accessing a gcp postgres database -->
                   <!-- third version, succesfully accessing amazon rds database -->
-                  This data is being pulled from a Google Cloud SQL database
+<!--                  This data is being pulled from a Google Cloud SQL database
 
               {% if latest_question_list %}
                   <ul>
@@ -264,7 +226,7 @@
               <a href="#" class="mdl-button">Select a Search Filter</a>
               <!-- ********make sure to escape all user input to protect against attacks on database*************-->
               <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>-->
-            </div>
+ <!--           </div>
           </div>
 
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn4">
@@ -276,7 +238,6 @@
             <li class="mdl-menu__item" disabled>Comment</li>
           </ul>
         </section>
-
 
 
 
@@ -342,15 +303,14 @@
                       net_metering = models.CharField(max_length=42000, blank=True, null=True)
                       net_metering_grade = models.CharField(max_length=42, blank=True, null=True)
                     -->
-
-
+<!--
                 </div>
 
                 <div class="mdl-card__actions">
                   <a href="#" class="mdl-button">Select a Search Filter</a>
                   <!-- ********make sure to escape all user input to protect against attacks on database*************-->
                   <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>-->
-                </div>
+<!--        </div>
 
             </div>
 
@@ -366,24 +326,9 @@
 
 
 
-        </section>
+        </section> -->
 
 
-
-
-
-
-
-        <!-- infographic before footer-->
-          <section class="section--footer mdl-color--white mdl-grid">
-            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-              <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
-            </div>
-            <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-              <br><h5>Changing Times</h5>
-              Solar Roof Fact #2: Minim eiusmod laboris enim
-            </div>
-          </section>
 
 
 
@@ -416,12 +361,6 @@
           </section>
 
 
-
-
-
-
-
-
           <section class="section--center mdl-grid mdl-grid--no-spacing">
 
             <div class="mdl-cell mdl-cell--12-col">
@@ -435,27 +374,49 @@
 
               <ul class="toc">
                 <h4>Table of Contents</h4>
-                <a href="#lorem1">Data Architecture</a>
-                <a href="#lorem2">Data Sources Used</a>
-                <a href="#lorem3">Ingestion</a>
-                <a href="#lorem4">Wrangling</a>
-                <a href="#lorem5">Initial Human Inspection of Data</a>
-                <a href="#lorem6">Visualizing the Data</a>
-                <a href="#lorem7">Sanity Checks</a>
-                <a href="#lorem8">Chlropeth Maps</a>
-                <a href="#lorem9">Machine Learning</a>
-                <a href="#lorem10">Creating a Webapp</a>
-                <a href="#lorem11">Conclusions</a>
-                <a href="#lorem12">Future Work</a>
+				<a href="#why">Why?</a>              
+                <a href="#data-sources">Data Collection & Sources</a>
+			    <a href="#data-arch">Data Architecture</a>
+                <a href="#ingestion">Ingestion</a>
+                <a href="#wrangling">Wrangling</a>
+                <a href="#analysis">Data Exploration and Analysis</a>
+                <a href="#visualization">Visualizing the Data</a>
+                <a href="#choropleths">Chloropeth Maps</a>
+                <a href="#machine-learning">Machine Learning</a>
+                <a href="#web-app">Creating a Webapp</a>
+                <a href="#conclusions">Conclusions</a>
+                <a href="#future-work">Future Work</a>
               </ul>
-
-
-              <h5 id="lorem1">Data Architecture</h5>
-              Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
+               <h5 id="why">Why?</h5>
+			   <ul>
+			   <li>While solar energy makes up only ~1% of total electrical generation, it is the fastest growing source of electrical generating capacity in the US.</li>
+			   <li>Federal, state, and local governments, as well as utility companies have to plan for potentially massive infrastructure investments necessary to effectively manage this distributed and intermittent source of electricity.</li>
+			   <li>The installation cost per watt for residential PV rooftop systems is quickly approaching grid parity, the economic breakeven point, beyond which consumers can capture a positive ROI from installing a PV rooftop system. Model results suggest that there is a grid-to-installation price tipping point beyond which exponential growth can be anticipated.</li>
+			   <li> Businesses armed with good predictive models are posed to capture profits early from burgeoning demand in ripening markets and enjoy the benefits of a first-mover advantage while minimizing the risk of entering too early.</li>
+			   </ul>
+              
+              <h5 id="data-sources">Data Collection & Sources</h5>
+              <h6>Data Collection</h6>
               <ul>
-                <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
-                <li>Dolor consectetur incididunt in ipsum laborum non et irure pariatur excepteur anim occaecat officia sint.</li>
-                <li>Lorem labore proident officia excepteur do.</li>
+                <li>The team drafted a statistical abstract based on the economic theory of demand as the basis for its data collection strategy.</li>
+                <li>According to economic theory, key determinants of demand are:
+                    <ul>
+					    <li>Product price</li> 
+						<li>Availability / price of complementary goods </li>
+						<li>Price of substitute goods </li>
+						<li>Income / income distribution </li>
+						<li>Consumer preferences </li>
+						<li>Government policy </li>
+					</ul>
+                <li>Using the general economic determinants of demand as a guide, the team went about identifying government and other data sources which they believed measured determinants of demand specific to PV rooftop systems.</li>
+              </ul>
+			  <h6>Data Sources</h6>
+              <ul>
+                <li><b>Tracking the Sun Public Data File:</b> a data effort by the Lawrence Berkley National Laboratory to capture key data from nation-wide PV installs.</li>
+                <li><b>American Community Survey data</b>: the US Census Bureau performs regular statistical samples of the US population to capture and measure key demographic characteristics, such as income, housing stock </li>
+                <li><b>Energy Information Agency:</b> a government agency responsible for capturing and reporting key data about the US energy industry, such as the average retail price of electricity by year and state</li>
+				<li><b>County-level Presidential General Election results 2012:</b> the data, compiled and reported by The Guardian, provides raw vote counts for candidates on the ballot in each county.</li>
+				<li><b>Freeing the Grid grades:</b> The Interstate Renewable Energy Council (IREC)’s annually assesses state policy and regulations on a A-F scale with respect to net metering and grid interconnectivity.</li>
               </ul>
 
               <p>
@@ -466,36 +427,50 @@
               </p>
 
 
-              <h5 id="lorem2">Data Sources Used</h5>
+              <h5 id="data-arch">Data Architecture</h5>
+    
+              <p>
+               The data pipeline consists of ...WORM Storage and Data Wrangling: Amazon Web Services-hosted PostGreSQL database for housing WORM storage and performing SQL operations to wrangle the data into the necessary formats.
 
-              <p id="lorem3">
-                Eiusmod nulla aliquip ipsum reprehenderit nostrud non excepteur mollit amet esse est est dolor. Dolore quis pariatur sit consectetur veniam esse ullamco duis Lorem qui enim ut veniam. Officia deserunt minim duis laborum dolor in velit pariatur commodo ullamco eu. Aute adipisicing ad duis labore laboris do mollit dolor cillum sunt aliqua ullamco. Esse tempor quis cillum consequat reprehenderit. Adipisicing proident anim eu sint elit aliqua anim dolore cupidatat fugiat aliquip qui.
               </p>
+			  <img src ="images/Capstone Solar Architecture.jpg" align="middle"></img>
 
-              <h5 id="lorem4">Ingestion</h5>
+              <h5 id="ingestion">Ingestion</h5>
               <p id="lorem4">
                 Nisi eiusmod esse cupidatat excepteur exercitation ipsum reprehenderit nostrud deserunt aliqua ullamco. Anim est irure commodo eiusmod pariatur officia. Est dolor ipsum excepteur magna aliqua ad veniam irure qui occaecat eiusmod aute fugiat commodo. Quis mollit incididunt amet sit minim velit eu fugiat voluptate excepteur. Sit minim id pariatur ex cupidatat cupidatat nostrud nostrud ipsum.
               </p>
 
 
-              <h5 id="lorem5">Wrangling</h5>
-              <p>
-                Enim ea officia excepteur ad veniam id reprehenderit eiusmod esse mollit consequat. Esse non aute ullamco Lorem aliqua qui dolore irure eiusmod aute aliqua proident labore aliqua. Ipsum voluptate voluptate exercitation laborum deserunt nulla elit aliquip et minim ex veniam. Duis cupidatat aute sunt officia mollit dolor ad elit ad aute labore nostrud duis pariatur. In est sint voluptate consectetur velit ea non labore. Ut duis ea aliqua consequat nulla laboris fugiat aute id culpa proident. Minim eiusmod laboris enim Lorem nisi excepteur mollit voluptate enim labore reprehenderit officia mollit.
-              </p>
+              <h5 id="wrangling">Wrangling</h5>
+			  <ul>
+                <li>Based on the available data, the team used quarterly installation counts by county as its instances for modeling PV rooftop demand.</li>
+                <li>Features were not all available or had perceived measurement issues at the county-level but had to be applied appropriately to that level of detail. For instance:</li>
+				<ul>
+				<li>Price per installed watt was estimated nationally by quarter due to perceived outlier / small sample size issues</li>
+				<li>Income / housing stock / retail electricity prices / Presidential election results were not available quarterly, and due to the relatively stable nature of these features, the team used 2015 data across the entire feature set. (Exception: Presidential election results were from 2012.)</li>
+				<li>Retail electricity prices and net metering / interconnectivity policy grades were only available at the state level and were applied at the state-level across the feature set.</li>
+				</ul>
+                <li>The team performed multiple SQL queries to produce joinable table views at the appropriate level of detail and then in stepwise fashion joined the instances and features into a consolidated table view for machine learning.</li>
 
+              </ul>
+  
 
-              <h5 id="lorem6">Initial Human Inspection of Data</h5>
+              <h5 id="analysis">Data Exploration and Analysis</h5>
               <p>
                 Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
               </p>
 
-              <h5 id="lorem7">Sanity Checks</h5>
-              <p>
-                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
-              </p>
+              <h5 id="machine-learning">Machine Learning</h5>
+              <ul>
+                <li>The team then proceeded to pipe the initial instances/features table into the scikit-learn available machine learning algorithms.</li>
+                <li>The linear regression models based on the initial dataset show low levels of explanatory power (R-squared < 0.3), whereas non-linear regressions show very high levels of explanatory power (R-squared > 0.9)</li>
+                <li>However, the linear regression results gave the team pause (given the economic theory of demand’s empirical strength) and encouraged them to perform feature transformations that might improve the linear regression results.</li>
+				<li>With feature transformations such as dividing the retail price of electricity by the price per installed watt, taking the exponent of that result, and multiplying it by the relevant housing stock, the team was able to improve the R-squared of the linear regressions from <0.3 to 0.6 – 0.73.</li>
+				<li>While the transformed dataset did not materially impact the non-linear results, it gave the team more confidence in their soundness.</li>
+              </ul>
+			  <img src="images/randomforest.png"></img>
 
-
-              <h5 id="lorem8">Visualizing the Data</h5>
+             <h5 id="lorem8">Visualizing the Data</h5>
               <p>
                 Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
               </p>
@@ -506,11 +481,6 @@
                 Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
               </p>
 
-
-              <h5 id="lorem9">Machine Learning</h5>
-              <p>
-                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
-              </p>
 
               <h5 id="lorem11">Creating a Webapp</h5>
               <p>
@@ -523,10 +493,10 @@
                 Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
               </p>
 
-              <h5 id="lorem12">Future Work</h5>
-              <p>
-                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
-              </p>
+              <h5 id="future">Future Study</h5>
+                <li>Finding data to provide more localized estimates of PV rooftop installation costs per watt over time.</li>
+                <li>Collecting and incorporating data that tracks county-level or utility company rebates / campaigns that encourage solar PV rooftop system installation over time (for example, Solarize Fairfax).</li>
+                <li>Scraping Yelp data of highly rated solar installers by county over time. Does the “build it and they will come” concept show impact?</li>
 
             </div>
           </section>
@@ -535,36 +505,6 @@
 
         <!-- Separate Tab for more info-->
         <div class="mdl-layout__tab-panel" id="explore">
-
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <i class="material-icons">play_circle_filled</i>
-            </header>
-            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
-                <h4>Interact with Our ML Model</h4>
-                Watch a quick video showing off our results or scroll down and dive right into the model
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">watch now</a>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn6">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn6">
-              <li class="mdl-menu__item" disabled>Share</li>
-              <li class="mdl-menu__item" disabled>Options</li>
-              <li class="mdl-menu__item" disabled>Comment</li>
-            </ul>
-          </section>
-
-
-
-
-
-
-
 
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -670,6 +610,7 @@ price will be used for 2016 or later
                 <h4>Seaborn Visualization</h4>
 
 
+
                  <img src="{% static 'polls/seaborn-first-plot.png' %}"  alt="seaborn plot"/>
 
               </div>
@@ -706,24 +647,7 @@ price will be used for 2016 or later
 
             </div>
 
-
-
           </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -741,11 +665,6 @@ price will be used for 2016 or later
         </div>
 
 
-
-
-
-
-
         <div class="mdl-layout__tab-panel" id="datateam">
 
               <div class="mdl-grid portfolio-max-width">
@@ -754,13 +673,15 @@ price will be used for 2016 or later
                          <img class="article-image" src="{% static 'polls/gt.png' %}" border="0" alt="">
                      </div>
                      <div class="mdl-card__title">
-                         <h2 class="mdl-card__title-text">Georgetown Data</h2>
+                         <h2 class="mdl-card__title-text">Georgetown University School of Continuing Studies: Data Science</h2>
                      </div>
                      <div class="mdl-card__supporting-text">
-                         About the program Georgetown Data Science Certificate Program
+					   <img src="images/georgetown.jpg"></img> <br />
+                          <br />
+                         This is capstone project conducted by a team belonging to the 8th cohort of Georgetown University's Data Science Professional Certificate Program
                      </div>
                      <div class="mdl-card__actions mdl-card--border">
-                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://scs.georgetown.edu/programs/375/certificate-in-data-science/">Read more about Data Science at Georgetown</a>
                      </div>
                  </div>
                </div>
@@ -775,10 +696,14 @@ price will be used for 2016 or later
                           <h2 class="mdl-card__title-text">Henry</h2>
                       </div>
                       <div class="mdl-card__supporting-text">
-                          Awesome!
+					      <img src="images/henry.jpg"></img> <br />
+                          <br />
+						  A seasoned cost accounting / finance / data analytics professional with deep, 10+ years experience in manufacturing accounting, budgeting, forecasting, financial modeling, and operational analysis.
+                          <br /><br />
+                          He is interested in taking on roles of increasing responsibility where his analysis and intuitive undestanding of operational processes / drivers guide decision-making and lead to clear, measureable results.
                       </div>
                       <div class="mdl-card__actions mdl-card--border">
-                          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://www.linkedin.com/in/henry-b-odom-iv-4327857/">Read more about Henry</a>
                       </div>
                   </div>
                 </div>
@@ -794,10 +719,14 @@ price will be used for 2016 or later
                            <h2 class="mdl-card__title-text">Jameelah</h2>
                        </div>
                        <div class="mdl-card__supporting-text">
-                           Spectacular!
+					   <img src="images/jameelah.jpg"></img> <br />
+                          <br />
+                           A Data Engineer with an interest in application architecture, especially as it pertains to big data analytics. Her experiences span from computing infrastructure, technical operations, and data computation to independent research centered around psychoacoustics. 
+						   <br /><br />
+						   She profoundly believes that a more knowledgeable society is a better functioning society, which is largely what drives her passions for research, innovation and community service.
                        </div>
                        <div class="mdl-card__actions mdl-card--border">
-                           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://www.linkedin.com/in/jameelahyoung">Read more about Jameelah</a>
                        </div>
                    </div>
                  </div>
@@ -811,10 +740,12 @@ price will be used for 2016 or later
                             <h2 class="mdl-card__title-text">Grace</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            Brilliant!
+						     <img src="images/grace.jpg"></img> <br />
+                          <br />
+                            An achieved Environmental Engineer and Geoscientist with experience in research efforts at universities all over the globe. Her projects cover topics spanning flouride contamination and organic pollution, to aquatic geochemistry. She possesses keen analytical and scientific abilities that make her an asset to any team she is a part of.
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://www.linkedin.com/in/graceluningfu/">Read more about Grace</a>
                         </div>
                     </div>
                   </div>
@@ -829,31 +760,17 @@ price will be used for 2016 or later
                              <h2 class="mdl-card__title-text">James</h2>
                          </div>
                          <div class="mdl-card__supporting-text">
-                             Hi!
+						     <img src="images/james.jpg"></img> <br />
+                          <br />
+                            A passionate technologist with a charisma that makes the team. He has an acedemic background in Electrical Engineering and currently works as a Patent Examiner for the United States Patent and Trade Office. If anybody has got the scoop on the nation's latest technological trends and innovations, it's this guy!
                          </div>
                          <div class="mdl-card__actions mdl-card--border">
-                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://www.linkedin.com/in/james-forman/">Read more about James</a>
                          </div>
                      </div>
                    </div>
 
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
         <footer class="mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
@@ -861,8 +778,7 @@ price will be used for 2016 or later
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">Overview</h1>
               <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">PV Rooftop Intro Video</a></li>
-                <li><a href="#">Background</a></li>
+                <li><a href="#overview">Background</a></li>
                 <li><a href="#">Project Goals</a></li>
                 <li><a href="#">Explore the Wrangled Data</a></li>
               </ul>
@@ -871,9 +787,9 @@ price will be used for 2016 or later
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">All the Details</h1>
               <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">Data Architecture</a></li>
-                <li><a href="#">Ingestion</a></li>
-                <li><a href="#">Wrangling</a></li>
+                <li><a href="#data-arch">Data Architecture</a></li>
+                <li><a href="#ingestion">Ingestion</a></li>
+                <li><a href="#wrangling">Wrangling</a></li>
                 <li><a href="#">Statistical Analysis</a></li>
                 <li><a href="#">Machine Learning</a></li>
                 <li><a href="#">Visualization</a></li>
@@ -883,9 +799,8 @@ price will be used for 2016 or later
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">Try It Out</h1>
               <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">ML Intro Video</a></li>
-                <li><a href="#">Interactive Choropleth Map</a></li>
-                <li><a href="#">Interactive Visual #2</a></li>
+                <li><a href="#">Choropleth Visualization</a></li>
+                <li><a href="#">Seaborn Visualization</a></li>
                 <li><a href="#">Interactive Visual #3</a></li>
                 <li><a href="#">Interactive Visual #4</a></li>
               </ul>
@@ -902,20 +817,18 @@ price will be used for 2016 or later
           </div>
           <div class="mdl-mega-footer--bottom-section">
             <div class="mdl-logo">
-              Georgetown Data Science (v1.25)
+              Thanks!
+
             </div>
-            <ul class="mdl-mega-footer--link-list">
-              <li><a href="#">Privacy and Legal</a></li>
-              <li><a href="#">Send Feedback</a></li>
-            </ul>
+           
           </div>
         </footer>
       </main>
     </div>
 
     <!-- maybe use this when complete
-    <a href="#" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Hire Us</a>
-    -->
+    <a href="#" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Hire Us</a> -->
+    
 
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </body>
