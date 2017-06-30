@@ -395,6 +395,33 @@
 
         <div class="mdl-layout__tab-panel" id="features">
 
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4>Historical SolarPV Rooftop Installs 2006-2015</h4>
+                 <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
+                 <img src="{% static 'polls/testanimatedchoro.gif' %}"  alt="Animated-Choropleth"/>
+
+                  <!--fix this formatting
+                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                   <span class="mdl-switch__label">Animated GIF off/on</span>
+                   <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+                   </label>
+                 -->
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+
+
+
           <section class="section--center mdl-grid mdl-grid--no-spacing">
 
             <div class="mdl-cell mdl-cell--12-col">
@@ -533,14 +560,94 @@
           </section>
 
 
+
+
+
+
+
+
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
 
               <div class="mdl-card__supporting-text">
-                <h4>Predicted SolarPV Rooftop Installs for A Given Year</h4>
+                <h4>This choropleth is dynamically created from the inputs below:</h4>
+                 <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
+
+
+                 <div>
+                   <object type="text/html" id="div-choropleth" data="http://127.0.0.1:8000/pv/?year=2015&price=3" width="600px" height="380px" style="overflow:auto;"></object>
+                 </div>
+
+
+2015 or earlier : choropleth will render historical information
+if 2016 or later : that is where the predicted model (random forest) is used
+year will be used for 2015 or earlier
+price will be used for 2016 or later
+
+
+              </div>
+
+              <div class="mdl-card__actions">
+
+                <!-- Numeric Textfield with Floating Label -->
+                <form action="#">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="year" value="2015">
+                    <input class="mdl-textfield__input" type="text" id="price" value="4.22">
+                    <label class="mdl-textfield__label" for="sample4">Enter Year and Price</label>
+                    <!--<span class="mdl-textfield__error">Input is not a number!</span>-->
+                  </div>
+                </form>
+
+                <!-- Colored raised button -->
+                <button id="test" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                  Re-run Model
+                </button>
+
+                <!--<p id="demo">asdf</p>
+                <p id='interactive'></p>
+                <p id='complete'></p>-->
+
+                <script type='text/javascript'>
+                document.onreadystatechange = function () {
+                  var state = document.readyState
+                  if (state == 'interactive') {
+                      //document.getElementById('interactive').innerHTML = 'Document ready to accept interactions.'
+                  } else if (state == 'complete') {
+                      //document.getElementById('complete').innerHTML = 'Document completely loaded'
+                      var button = document.getElementById('test');
+                      var name = document.getElementById('name');
+                      var age = document.getElementById('age');
+                      var location = document.getElementById('location');
+                      var year = document.getElementById('year');
+                      var price = document.getElementById('price');
+
+                      button.onclick = function () {
+                          var str = "/pv/?year=" + year.value + "&price=" + price.value;
+                          //document.getElementById('demo').innerHTML = str;
+                          document.getElementById("div-choropleth").setAttribute('data', str);
+                          //window.location.replace("/pv/?year=" + year.value + "&price=" + price.value);
+                        }
+                      };
+                    }
+                </script>
+
+
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4>Historical SolarPV Rooftop Installs 2006-2015</h4>
                  <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
                  <img src="{% static 'polls/testanimatedchoro.gif' %}"  alt="Animated-Choropleth"/>
-
 
                   <!--fix this formatting
                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
@@ -548,28 +655,25 @@
                    <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
                    </label>
                  -->
-
               </div>
-
-              <div class="mdl-card__actions">
-
-                <a href="#" class="mdl-button">Change Date &amp; Re-run Model</a>
-                <a href="#" class="mdl-button">Switch to Static Image</a>
-
-              </div>
-
             </div>
-
-
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn7">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn7">
-              <li class="mdl-menu__item" disabled>Share</li>
-              <li class="mdl-menu__item" disabled>Options</li>
-              <li class="mdl-menu__item" disabled>Comment</li>
-            </ul>
           </section>
+
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4>Seaborn Visualization</h4>
+
+
+                 <img src="{% static 'polls/seaborn-first-plot.png' %}"  alt="seaborn plot"/>
+
+              </div>
+            </div>
+          </section>
+
 
 
 
@@ -584,7 +688,7 @@
                  <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
 
 
-<div class='tableauPlaceholder' id='viz1498610447566' style='position: relative'><noscript><a href='#'><img alt='Feature-map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='PVRooftop-Feature-Map-workbook&#47;Feature-map' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'> var divElement = document.getElementById('viz1498610447566'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); </script>
+<div class='tableauPlaceholder' id='viz1498610447566' style='position: relative'><noscript><a href='#'><img alt='Feature-map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='PVRooftop-Feature-Map-workbook&#47;Feature-map' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='show_viz_home' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_share' value='no'/><param name='display_overlay' value='no' /><param name='display_count' value='yes' /></object></div><script type='text/javascript'> var divElement = document.getElementById('viz1498610447566'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); </script>
 
 
                   <!--fix this formatting
@@ -596,24 +700,12 @@
 
               </div>
 
-              <div class="mdl-card__actions">
 
-                <a href="#" class="mdl-button">Switch Views</a>
-                <a href="#" class="mdl-button">Options</a>
-
-              </div>
 
             </div>
 
 
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn7">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn7">
-              <li class="mdl-menu__item" disabled>Share</li>
-              <li class="mdl-menu__item" disabled>Options</li>
-              <li class="mdl-menu__item" disabled>Comment</li>
-            </ul>
+
           </section>
 
 
@@ -639,7 +731,7 @@
 
               <h5 id="lorem12">Notes</h5>
               <p>
-                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
+                insert a note here
               </p>
 
             </div>
@@ -808,7 +900,7 @@
           </div>
           <div class="mdl-mega-footer--bottom-section">
             <div class="mdl-logo">
-              Georgetown Data Science (v1.9)
+              Georgetown Data Science (v1.25)
             </div>
             <ul class="mdl-mega-footer--link-list">
               <li><a href="#">Privacy and Legal</a></li>
