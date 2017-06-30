@@ -7,8 +7,10 @@ import pickle
 from bs4 import BeautifulSoup
 import numpy as np
 import requests
+import urllib3
 import pandas as pd
 import math
+import seaborn as sns 
 
 
 
@@ -50,7 +52,7 @@ def get_choropleth(request):
 	predicted_counts = loaded_model.predict(features)
 	
 	#  Re-arrange features table for svg creation
-	features['counts']=predicted_counts
+	features['count']=predicted_counts
 	features['fips']=installation['fips']
 	features['county_name']=installation['county_name']
 	features['state_abbrv']=installation['state_abbrv']
@@ -134,6 +136,44 @@ def get_choropleth(request):
 	return (render(request, 'django.svg'))
 
 	
+	
+	
+def get_visualizations(request):
+	yr = request.GET['year']
+	ppw = request.GET['price']
+	if(int(yr) <= 2015):
+		table_name = 'pv/data/open_pv_' + yr + '.csv'
+	else:
+		table_name = 'pv/data/'+str(installation_price_per_watt)+'.csv'
+	df = pd.read_csv(table_name)
+	sns_plot = sns.pairplot(df['year'])
+	output_img = 'pv/data/'+str(installation_price_per_watt)+'.csv'
+	sns_plot.savefig(output_img)
+	
+	return (render(request, output_img))
+
+def get_heatmap(request):
+	yr = request.GET['year']
+	ppw = request.GET['price']
+	if(int(yr) <= 2015):
+		table_name = 'pv/data/open_pv_' + yr + '.csv'
+	else:
+		table_name = 'pv/data/'+str(installation_price_per_watt)+'.csv'
+	df = pd.read_csv(table_name)
+	df.sort_values('count',ascending=False,inplace=True)
+	print(df.head())
+	for row in df.iterrows():
+		#print(df['county'].loc[row[0]])
+		http = urllib3.PoolManager()
+		r = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyC2RUFjvVCRtEUAYk-ndsIExuO2BoHgtOY'.format(df['county'].loc[row[0]]))
+		print(r.json()['results'][0]['geometry']['location'])
+		
+	return None
+	
+
+
+
+
 # Estimates national average installation_price_per_watt
 def calc_installation_price_per_watt(year, quarter):
 	installation_price_per_watt= -6.561 * math.log(year + (0.25 * quarter) - 1990) + 25.602
