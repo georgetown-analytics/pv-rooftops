@@ -575,7 +575,7 @@
 
 
                  <div>
-                   <object type="text/html" id="div-choropleth" data="http://127.0.0.1:8000/pv/?year=2015&price=3" width="600px" height="380px" style="overflow:auto;"></object>
+                   <object type="text/html" id="div-choropleth" data="" width="600px" height="380px" style="overflow:auto;"></object>
                  </div>
 
 
@@ -604,8 +604,8 @@ price will be used for 2016 or later
                   Re-run Model
                 </button>
 
-                <!--<p id="demo">asdf</p>
-                <p id='interactive'></p>
+                <p id="demo">asdf</p>
+                <!--<p id='interactive'></p>
                 <p id='complete'></p>-->
 
                 <script type='text/javascript'>
@@ -623,9 +623,11 @@ price will be used for 2016 or later
                       var price = document.getElementById('price');
 
                       button.onclick = function () {
-                          var str = "/pv/?year=" + year.value + "&price=" + price.value;
-                          //document.getElementById('demo').innerHTML = str;
+                          var str2 = window.location.href;
+                          //str2= str2.slice(0, -8);
+                          var str = str2 + "pv/?year=" + year.value + "&price=" + price.value;
                           document.getElementById("div-choropleth").setAttribute('data', str);
+                          document.getElementById('demo').innerHTML = str;
                           //window.location.replace("/pv/?year=" + year.value + "&price=" + price.value);
                         }
                       };
