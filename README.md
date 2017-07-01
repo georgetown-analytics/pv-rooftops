@@ -1,5 +1,6 @@
 
-> -  **Capstone Project Website** : [www.solar-roof-research.com](www.solar-roof-research.com)
+> -  **Capstone Project Website** : www.solar-roof-research.com
+
 
 # pv-rooftops
 Georgetown Data Science PV Rooftops Project
