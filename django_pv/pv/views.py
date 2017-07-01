@@ -29,8 +29,8 @@ def get_choropleth(request):
 
 	loaded_model = pickle.load(open(filename, 'rb'))
 	count = {}
-	yr = request.GET['year']
-	ppw = request.GET['price']
+	yr = request.GET.get('year', '2015')
+	ppw = request.GET.get('price', 4.21)
 	qrtr = 4
 	
 	#installation_price_per_watt = calc_installation_price_per_watt(int(yr),4)
@@ -155,24 +155,26 @@ def get_visualizations(request):
 def get_heatmap(request):
 	yr = request.GET['year']
 	ppw = request.GET['price']
+	limit = request.GET.get('limit',10)
 	if(int(yr) <= 2015):
 		table_name = 'pv/data/open_pv_' + yr + '.csv'
 	else:
 		table_name = 'pv/data/'+str(installation_price_per_watt)+'.csv'
 	df = pd.read_csv(table_name)
 	df.sort_values('count',ascending=False,inplace=True)
-	print(df.head())
+	df = df.head(n=int(limit))
+	#print(df.head())
+	locations = []
+	context={}
 	for row in df.iterrows():
-		#print(df['county'].loc[row[0]])
 		http = urllib3.PoolManager()
 		r = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyC2RUFjvVCRtEUAYk-ndsIExuO2BoHgtOY'.format(df['county'].loc[row[0]]))
 		print(r.json()['results'][0]['geometry']['location'])
-		
-	return None
+		loc=(r.json()['results'][0]['geometry']['location']['lat'],r.json()['results'][0]['geometry']['location']['lng'])
+		locations.append(loc)
+		context['locations'] = locations
+	return (render(request, 'heatmap.html', context))
 	
-
-
-
 
 # Estimates national average installation_price_per_watt
 def calc_installation_price_per_watt(year, quarter):
