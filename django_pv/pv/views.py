@@ -60,7 +60,7 @@ def get_choropleth(request):
 	features['fips'] = features['fips'].apply(lambda x: '{0:0>5}'.format(x))
 	
 	#  Write out results to csv
-	predicted_data = 'pv/data/'+str(installation_price_per_watt)+'.csv'
+	predicted_data = 'pv/data/'+str(ppw)+'.csv'
 	features.to_csv(predicted_data)
 	
 	if(int(yr) <= 2015):
@@ -155,12 +155,16 @@ def get_visualizations(request):
 def get_heatmap(request):
 	yr = request.GET['year']
 	ppw = request.GET['price']
-	limit = request.GET.get('limit',10)
+	limit = request.GET.get('limit', 10)
+	if(int(limit) > 500):
+		limit = 500
 	if(int(yr) <= 2015):
 		table_name = 'pv/data/open_pv_' + yr + '.csv'
 	else:
-		table_name = 'pv/data/'+str(installation_price_per_watt)+'.csv'
+		table_name = 'pv/data/'+str(ppw)+'.csv'
 	df = pd.read_csv(table_name)
+	if(table_name=='pv/data/'+str(ppw)+'.csv'):
+		df['county']=df['county_name']
 	df.sort_values('count',ascending=False,inplace=True)
 	df = df.head(n=int(limit))
 	#print(df.head())
