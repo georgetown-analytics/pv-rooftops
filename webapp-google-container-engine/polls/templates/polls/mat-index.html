@@ -24,21 +24,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Capstone: PV Rooftop Installations</title>
 
+
+    {% load static %}`
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+    <link rel="icon" sizes="192x192" href="{% static 'polls/android-desktop.png' %}">
+    <!-- old image link: "images/android-desktop.png" -->
+    <!-- new image link: "{% static 'polls/android-desktop.png' %}"-->
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'polls/ios-desktop.png' %}">
+    <!-- old image link: "images/ios-desktop.png" -->
+    <!-- new image link: "{% static 'polls/ios-desktop.png' %}" -->
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="{% static 'polls/favicon.png' %}">
+    <!-- old image link: "images/favicon.png" -->
+    <!-- new image link: "{% static 'polls/favicon.png' %}" -->
+
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
@@ -57,8 +66,6 @@
     <!-- got it to work!  lesson learned: order of css links matter -->
     <!-- the below template tag generates the absolute URL for the style.css file -->
     <!-- for more info, see the middle of part 6 for the Django tutorial -->
-     {% load static %}
-
      <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 
 
@@ -176,11 +183,32 @@
 
               </div>
 
+              <!--
+              <div class="mdl-card__actions">
+                <a href="#features" class="mdl-button">See Presentation Slides</a>
+              </div>
+              -->
+
+            </div>
+          </section>
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div align="center" class="mdl-card__supporting-text">
+                   <a href="https://goo.gl/ySSzRm" target="_blank"><img src ="{% static 'polls/pvrooftop-paper-preview.png' %}"; style="align=middle; max-width: 100%; height: auto; display: block; "></img></a>
+              </div>
+
+
               <div class="mdl-card__actions">
                 <a href="https://goo.gl/ySSzRm" class="mdl-button">Read Our Paper</a>
               </div>
             </div>
           </section>
+
+
+
 
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -241,6 +269,8 @@
                   <!-- third version, succesfully accessing amazon rds database -->
 <!--                  This data is being pulled from a Google Cloud SQL database
 
+              {% comment %}
+
               {% if latest_question_list %}
                   <ul>
                   {% for question in latest_question_list %}
@@ -256,8 +286,15 @@
             <div class="mdl-card__actions">
               <a href="#" class="mdl-button">Select a Search Filter</a>
               <!-- ********make sure to escape all user input to protect against attacks on database*************-->
-              <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>-->
- <!--           </div>
+              <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>
+
+           {% endcomment %}
+
+            -->
+
+
+
+ <!--     </div>
           </div>
 
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn4">
@@ -293,6 +330,9 @@
 
                   <tbody>
 
+
+                  {% comment %}
+
                   {% if rdsdb %}
 
                       {% for question in rdsdb %}
@@ -309,6 +349,9 @@
                   {% else %}
                       <p>No rds-postgres data available.</p>
                   {% endif %}
+
+
+                  {% endcomment %}
 
                   </tbody>
                   </table>
@@ -331,8 +374,18 @@
 
                 <div class="mdl-card__actions">
                   <a href="#" class="mdl-button">Select a Search Filter</a>
+
+                  {% comment %}
+
                   <!-- ********make sure to escape all user input to protect against attacks on database*************-->
-                  <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>-->
+                  <!--<a href="{% url 'admin:index' %}" class="mdl-button">Admin</a>
+
+                  {% endcomment %}
+
+                -->
+
+
+
 <!--        </div>
 
             </div>
@@ -570,6 +623,31 @@
             </div>
           </section>
 
+
+
+          <section id="machine-learning" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4> Machine Learning Pipeline </h4>
+
+
+                <br>
+                <h5> the Jupyter Notebook </h5>
+
+                 <div>
+                   <object type="text/html" id="div-ML" data="{% static 'polls/updated_html.html' %}" width="100%" height="700px"></object>
+                 </div>
+
+
+              </div>
+            </div>
+          </section>
+
+
+
+
+
           <section id="machine-learning" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
 
@@ -590,14 +668,6 @@
                 <img src ="{% static 'polls/prediction-error-1.png' %}"; style="align=middle; max-width: 100%; height: auto; display: block; "></img>
 
 
-                <br>
-                <h5> the Jupyter Notebook </h5>
-
-                 <div>
-                   <object type="text/html" id="div-ML" data="{% static 'polls/ML_Regression_presentation.html' %}" width="100%" height="700px"></object>
-                 </div>
-
-                  <!-- style="align=middle; max-width: 100%; height: auto; display: block; " -->
 
               </div>
             </div>
@@ -632,7 +702,7 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
 
               <div class="mdl-card__supporting-text">
-                <h4> Chloropeth Maps </h4>
+                <h4> Choropleth Maps </h4>
 
 
                  <img src="{% static 'polls/2008to2015choropleth.png' %}"; style="align=middle; max-width: 100%; height: auto; display: block;"/>
@@ -791,16 +861,23 @@
               <div class="mdl-card__supporting-text">
                 <h4>This choropleth is dynamically created from the inputs below:</h4>
 
+                <p id="instructions">
+
+                  <br>
+                    <b>To generate your first choropleth:</b>
+                  <br>
+                    <ul>
+                    <li>Select a year and price below and then click "Re-Run Model". </li>
+                    <li>The default values are Year = 2015 and Price = 4.22 </li>
+                    <li>Using these default values, the generated choropleth map will show the quantity of solar rooftop installations for 2015 (at a solar rooftop installation price point of $2.15 per watt)
+                  </ul>
+                </p>
 
                  <div>
                    <object type="text/html" id="div-choropleth" data="" width="600px" height="380px" style="overflow:auto;"></object>
                  </div>
 
 
-2015 or earlier : choropleth will render historical information
-if 2016 or later : that is where the predicted model (random forest) is used
-year will be used for 2015 or earlier
-price will be used for 2016 or later
 
 
               </div>
@@ -822,7 +899,9 @@ price will be used for 2016 or later
                   Re-run Model
                 </button>
 
+              <!--
                 <p id="demo">asdf</p>
+              -->
                 <!--<p id='interactive'></p>
                 <p id='complete'></p>-->
 
@@ -840,6 +919,12 @@ price will be used for 2016 or later
                       var location = document.getElementById('location');
                       var year = document.getElementById('year');
                       var price = document.getElementById('price');
+
+
+                      //tableau code
+                      var divElement = document.getElementById('viz1498610447566'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
+
 
                       button.onclick = function () {
                           var str2 = window.location.href;
@@ -859,6 +944,45 @@ price will be used for 2016 or later
           </section>
 
 
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+
+              <div class="mdl-card__supporting-text">
+                <h4>Notes about the above interactive model:</h4>
+
+
+
+                <ul>
+                  <li>Entering a Year from 2006 to 2015 will render using historical information (since we know what the actual solar rooftop install numbers are per county for each of those years). </li>
+
+                  <li>Entering a year of 2016 or later will generate a choropleth map showing our predicted number of solar rooftop installs per county (using our trained random forest model regression model) using your selected price value. </li>
+                </ul>
+
+
+                <b>Why is the model only dependent on price?</b>
+                <ul>
+                  <li> Our machine learning model uses a combination of 12 different features in order to predict household solar rooftop installs for each U.S. county.  Our team used the randomized lasso algorithm to evaluate the importance of all 12 features.  Results show that the "Exp(grid_to_panel) * (sfh + th)" feature has the highest feature score.  This feature is calculated as the exponent of the ratio of the relevant electricity price to installation price multiplied by the sum of single-family homes and attached houses for each county in the United States.  Theoretically, the electricity price and the quantity of households in the U.S. should stay relatively stable over the short- to mid-term, while the installation price for a rooftop solar system is expected to dramatically decrease.  (For instance, the price dropped at an average rate of 9% per year over the last 8 years).  Additionally, the values of the other 11 features are also considered relatively stable over time.  Therefore, for this first data webapp, the team considers Price (i.e. solar rooftop installation price per watt) as the key factor that affects predicted solar rooftop installs per county, and therefore, it is the value we request from the user when generating a new model.
+                  </li>
+                </ul>
+
+                <b>What price should I choose to see predicted rooftop install for year 20XX?</b>
+
+                <ul>
+                  <li>
+                    See the graph below, which maps the historical install price over time.  This graph can be used to help predict the install price for a given year.  A future project would entail a separate predictive model focussing on more accurately predicting installation price for a given year and county.  With the current model, a user can see how dramatically solar rooftop installs is predicted to increase as solar roofs decrease in price.
+                  </li>
+
+                </ul>
+
+              </div>
+            </div>
+          </section>
+
+
+
+
+
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
 
@@ -869,6 +993,9 @@ price will be used for 2016 or later
               </div>
             </div>
           </section>
+
+
+
 
 
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
@@ -911,19 +1038,38 @@ price will be used for 2016 or later
               <div class="mdl-card__supporting-text">
                 <h4>Feature Set</h4>
                  <!--test images--><!--count2015.jpeg--><!--testanimatedchoro.gif-->
+                 <ul>
+                   <li>
+                     Mouse over the below map to see a sample of the county-specific features we used in our predictive model
+                   </li>
+                 </ul>
+
+<div class='tableauPlaceholder' id='viz1498610447566' style='position: relative'>
+  <noscript><a href='#'><img alt='Feature-map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1_rss.png' style='border: none' /></a>
+  </noscript>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+    <param name='site_root' value='' />
+    <param name='name' value='PVRooftop-Feature-Map-workbook&#47;Feature-map' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='no' />
+    <param name='show_viz_home' value='no' />
+    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1.png' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_share' value='no'/>
+    <param name='display_overlay' value='no' />
+    <param name='display_count' value='yes' />
+  </object>
+</div>
 
 
-<div class='tableauPlaceholder' id='viz1498610447566' style='position: relative'><noscript><a href='#'><img alt='Feature-map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='PVRooftop-Feature-Map-workbook&#47;Feature-map' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='show_viz_home' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PV&#47;PVRooftop-Feature-Map-workbook&#47;Feature-map&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_share' value='no'/><param name='display_overlay' value='no' /><param name='display_count' value='yes' /></object></div><script type='text/javascript'> var divElement = document.getElementById('viz1498610447566'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); </script>
+<!--
+<script type='text/javascript'> var divElement = document.getElementById('viz1498610447566'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); </script>
+-->
 
-
-                  <!--fix this formatting
-                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-                   <span class="mdl-switch__label">Animated GIF off/on</span>
-                   <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-                   </label>
-                 -->
-
-              </div>
+  </div>
 
 
 
@@ -937,9 +1083,9 @@ price will be used for 2016 or later
             <div class="mdl-cell mdl-cell--12-col">
 
 
-              <h5 id="lorem12">Notes</h5>
+              <h5 id="lorem12"></h5>
               <p>
-                Version 0.42
+                Version 0.64
               </p>
 
             </div>
@@ -1044,7 +1190,10 @@ price will be used for 2016 or later
                          <div class="mdl-card__supporting-text">
 						     <img src="{% static 'polls/james.jpg' %}" ; style="align=middle; max-width: 100%; height: auto; display: block;"></img> <br />
                           <br />
-                            A passionate technologist with a charisma that makes the team. He has an acedemic background in Electrical Engineering and currently works as a Patent Examiner for the United States Patent and Trade Office. If anybody has got the scoop on the nation's latest technological trends and innovations, it's this guy!
+                            A passionate technologist with a charisma that makes the team. He has an acedemic background in Electrical Engineering and currently works as a Patent Examiner for the United States Patent and Trademark Office. If anybody has got the scoop on the nation's latest technological trends and innovations, it's this guy!
+
+                            <br><br>
+                            (Note from James:  a very nice team member wrote the above bio - I'll say that the amount of charisma I have is debatable, but I'd like to think pouring my energy into a project has its merits.)
                          </div>
                          <div class="mdl-card__actions mdl-card--border">
                              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://www.linkedin.com/in/james-forman/">Read more about James</a>
@@ -1056,6 +1205,8 @@ price will be used for 2016 or later
 
         <footer class="mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
+
+          <!--
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">Overview</h1>
@@ -1065,6 +1216,9 @@ price will be used for 2016 or later
                 <li><a href="#">Explore the Wrangled Data</a></li>
               </ul>
             </div>
+          -->
+
+          <!--
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">All the Details</h1>
@@ -1077,6 +1231,9 @@ price will be used for 2016 or later
                 <li><a href="#">Visualization</a></li>
               </ul>
             </div>
+          -->
+
+          <!--
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">Try It Out</h1>
@@ -1087,13 +1244,15 @@ price will be used for 2016 or later
                 <li><a href="#">Interactive Visual #4</a></li>
               </ul>
             </div>
+          -->
+
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">About Us</h1>
+              <h1 class="mdl-mega-footer--heading">Have a Question?</h1>
               <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">Team Bio</a></li>
-                <li><a href="#">Send Us Your Data Problem</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a href="https://goo.gl/forms/3Bc907b7ziveuTTz2">Send Us Your Feedback/Comments on this Project</a></li>
+                <br>
+                <li><a href="https://goo.gl/forms/UBgn0sQl8wgnJGAo2">Send Us Your Data Problem</a></li>
               </ul>
             </div>
           </div>

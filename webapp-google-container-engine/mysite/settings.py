@@ -82,21 +82,21 @@ DATABASES = {
     'default': {
         # If you are using Cloud SQL for MySQL rather than PostgreSQL, set
         # 'ENGINE': 'django.db.backends.mysql' instead of the following.
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'polls',
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': 'polls',
+        #'USER': os.getenv('DATABASE_USER'),
+        #'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        #'HOST': '127.0.0.1',
+        #'PORT': '5432',
     },
 
     'rds-postgres': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': os.getenv('AMZN_RDS_USER'),
-        'NAME': os.getenv('AMZN_RDS_DBNAME'),
-        'PASSWORD': os.getenv('AMZN_RDS_PASSWORD'),
-        'HOST': os.getenv('AMZN_RDS_HOST'),
-        'PORT': '5432',
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'USER': os.getenv('AMZN_RDS_USER'),
+        #'NAME': os.getenv('AMZN_RDS_DBNAME'),
+        #'PASSWORD': os.getenv('AMZN_RDS_PASSWORD'),
+        #'HOST': os.getenv('AMZN_RDS_HOST'),
+        #'PORT': '5432',
     }
 
 
